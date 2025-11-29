@@ -1,0 +1,50 @@
+/* simple header styles */
+/* Header styles */
+.app-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0.5rem 1rem;
+  background:#0b5fff;
+  color:#fff;
+  font-family:Segoe UI, Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+}
+.app-header .left{ display:flex; align-items:center; gap:0.75rem; }
+.menu-btn{ background:transparent; border:none; color:inherit; font-size:1.25rem; cursor:pointer; }
+.logo{ height:32px; width:auto; }
+.title{ font-weight:600; font-size:1.05rem; }
+
+.nav{ display:flex; gap:0.75rem; }
+.nav-link{ color:rgba(255,255,255,0.95); cursor:pointer; text-decoration:none; padding:0.25rem 0.5rem; border-radius:4px; }
+.nav-link:hover{ background: rgba(255,255,255,0.06); }
+
+.right{ display:flex; align-items:center; gap:0.75rem; }
+.search{ display:flex; align-items:center; }
+.search input{ padding:0.35rem 0.5rem; border-radius:4px; border:none; min-width:180px; }
+.search button{ margin-left:0.25rem; background:transparent; border:none; color:inherit; cursor:pointer; }
+
+.user{ position:relative; }
+.avatar img{ height:32px; width:32px; border-radius:50%; display:block; }
+.user-menu{
+  position:absolute;
+  right:0;
+  top:44px;
+  list-style:none;
+  margin:0;
+  padding:0.25rem 0;
+  background:#fff;
+  color:#111;
+  border-radius:4px;
+  box-shadow:0 6px 18px rgba(2,6,23,0.2);
+  min-width:140px;
+  z-index:50;
+}
+.user-menu li{ padding:0.5rem 1rem; cursor:pointer; white-space:nowrap; }
+.user-menu li:hover{ background: rgba(0,0,0,0.04); }
+
+/* Responsive */
+@media (max-width:720px){
+  .nav{ display:none; }
+  .title{ display:none; }
+  .search input{ min-width:120px; }
+}

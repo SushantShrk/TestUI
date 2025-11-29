@@ -1,0 +1,122 @@
+<app-header></app-header>
+
+<div class="dashboard-layout">
+  <aside class="sidebar" role="navigation" aria-label="Main navigation">
+    <ul>
+      <li [class.active]="activeTab==='add'" (click)="setTab('add')">
+        <span class="sidebar-icon">➕</span>
+        <span>Add Trade</span>
+      </li>
+      <li [class.active]="activeTab==='positions'" (click)="setTab('positions')">
+        <span class="sidebar-icon">📊</span>
+        <span>Current Positions</span>
+      </li>
+     
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <section *ngIf="activeTab==='add'" class="card panel" role="tabpanel" aria-label="Add trades">
+      <h2><span class="section-icon">➕</span> Add Trade</h2>
+      <form (submit)="onAddOrUpdateCancleTrade('Insert'); $event.preventDefault()" class="trade-form">
+        <div class="form-row">
+          <label>
+            <span>Symbol</span>
+            <input type="text" [(ngModel)]="newTrade.securityCode" name="symbol" required placeholder="e.g. TCS" />
+          </label>
+          <label>
+            <span>Side</span>
+            <select [(ngModel)]="newTrade.tradeType" name="side">
+              <option value="BUY">BUY</option>
+              <option value="SELL">SELL</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Quantity</span>
+            <input type="number" [(ngModel)]="newTrade.quantity" name="quantity" required min="1" />
+          </label>
+        </div>
+        <!-- Form buttons: -->
+        <div class="form-actions">
+          <button *ngIf="editIndex === null && cancelIndex === null" type="submit" class="btn primary">Add Trade</button>
+          <button *ngIf="editIndex !== null" type="submit" class="btn primary">Update Trade</button>
+          <button *ngIf="editIndex !== null" type="button" class="btn" (click)="cancelEdit()">Cancel Edit</button>
+          <button *ngIf="cancelIndex !== null" type="button" class="btn danger" (click)="onAddOrUpdateCancleTrade('Cancel')">Cancel Trade</button>
+          <button type="button" class="btn" (click)="resetNewTrade()" *ngIf="editIndex === null && cancelIndex === null">Reset</button>
+        </div>
+      </form>
+
+      <!-- Trade grid for modification/cancellation before finalizing -->
+      <div class="trade-grid" *ngIf="tradeOrders.length > 0">
+        <table class="positions">
+          <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Trade ID</th>
+              <th>Version</th>
+              <th>Security Code</th>
+              <th>Quantity</th>
+              <th>I/U/C</th>
+              <th>Buy/Sell</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let trade of tradeOrders; let idx = index"
+    [class.disabled-row]="isTradeIdCancelled(trade.tradeID)">
+  <td>{{ trade.transactionID }}</td>
+  <td>{{ trade.tradeID }}</td>
+  <td>{{ trade.version }}</td>
+  <td>{{ trade.securityCode }}</td>
+  <td>{{ trade.quantity }}</td>
+  <td>{{ trade.operationType }}</td>
+  <td>
+    <span [ngClass]="{'buy': trade.tradeType==='BUY', 'sell': trade.tradeType==='SELL'}">{{ trade.tradeType }}</span>
+  </td>
+  <td>
+    <button 
+      class="btn" 
+      title="Edit" 
+      (click)="editTrade(idx)" 
+      [disabled]="trade.operationType === 'Cancel'">✏️</button>
+    <button 
+      class="btn" 
+      title="Cancel" 
+      (click)="prepareCancelTrade(idx)" 
+      [disabled]="trade.operationType === 'Cancel'">❌</button>
+  </td>
+</tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </section>
+
+    <section *ngIf="activeTab==='positions'" class="card panel" role="tabpanel" aria-label="Current positions">
+      <h2><span class="section-icon">📊</span> Current Positions</h2>
+      <table class="positions">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Qty</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of currentPositions">
+            <td>{{ p.securityCode }}</td>
+            <td>{{ p.quantity }}</td>
+         
+          </tr>
+          <tr *ngIf="currentPositions.length===0">
+            <td colspan="3" class="empty-row">No positions</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+     
+  </main>
+</div>

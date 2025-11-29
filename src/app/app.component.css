@@ -1,0 +1,289 @@
+/* Tabs & panels */
+.container{ padding:1rem; max-width:1100px; margin:0 auto; }
+.tabs{ display:flex; gap:0.5rem; margin:1rem 0; }
+.tab{ padding:0.5rem 0.75rem; border:1px solid #ddd; background:#fff; cursor:pointer; border-radius:4px; }
+.tab.active{ background:#0b5fff; color:#fff; border-color:#0b5fff; }
+.panel{ background:#fff; padding:1rem; border-radius:6px; border:1px solid #e6e6e6; }
+
+.trade-form{ display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; align-items:end; }
+.trade-form label{ display:flex; flex-direction:column; font-size:0.9rem; }
+.form-actions{ grid-column:1/ -1; display:flex; gap:0.5rem; }
+.positions, .history{ width:100%; border-collapse:collapse; margin-top:0.5rem; }
+.positions th, .positions td, .history th, .history td{ text-align:left; padding:0.5rem; border-bottom:1px solid #f0f0f0; }
+/* Add to app.component.css for enhanced design */
+.dashboard-layout {
+  display: flex;
+  min-height: 80vh;
+  background: #f7f9fc;
+}
+
+.sidebar {
+  width: 120px; /* reduced from default (e.g. 220px) */
+  background: #fff;
+  border-right: 1px solid #e6e6e6;
+  padding: 1rem 0.5rem 1rem 0.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.sidebar ul {
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #222;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background: #0b5fff;
+  color: #fff;
+}
+
+.sidebar-icon {
+  font-size: 1.3em;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  min-width: 0;
+}
+
+.card {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  border: none;
+  margin-bottom: 2rem;
+  background: #fff;
+}
+
+.section-icon {
+  font-size: 1.2em;
+  vertical-align: middle;
+  margin-right: 0.25em;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-row label {
+  flex: 1;
+}
+
+.btn {
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  border: none;
+  background: #e6e6e6;
+  color: #222;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin-right: 0.2em;
+  transition: background 0.2s;
+}
+
+.btn.primary {
+  background: #0b5fff;
+  color: #fff;
+}
+
+.btn:hover {
+  background: #0b5fff;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #0846c7;
+}
+
+.empty-row {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+.buy {
+  color: #0b5fff;
+  font-weight: bold;
+}
+
+.sell {
+  color: #e53935;
+  font-weight: bold;
+}
+
+.no-pending-trades mat-card {
+  margin-top: 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.trade-grid {
+  margin-top: 2rem;
+  overflow-x: auto;
+}
+
+.positions {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.positions th, .positions td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+  min-width: 110px;
+}
+
+.edit-cell {
+  width: 100%;
+  min-width: 80px;
+  max-width: 140px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #e6e6e6;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.disabled-row {
+  background: #f5f5f5;
+  color: #aaa;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.trade-form input[type="text"],
+.trade-form input[type="number"],
+.trade-form select {
+  width: 220px;
+  max-width: 100%;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Responsive form layout */
+.trade-form .form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.trade-form label {
+  flex: 1 1 180px;
+  min-width: 140px;
+}
+.trade-form input,
+.trade-form select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  padding: 0.4rem 0.6rem;
+}
+
+/* Responsive table */
+.trade-grid {
+  overflow-x: auto;
+}
+.positions {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+.positions th, .positions td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-size: 1rem;
+  min-width: 90px;
+}
+.btn {
+  padding: 0.3rem 0.7rem;
+  font-size: 1.1em;
+  border-radius: 4px;
+  border: none;
+  background: #e6e6e6;
+  color: #222;
+  cursor: pointer;
+  margin-right: 0.2em;
+  transition: background 0.2s;
+}
+.btn:hover {
+  background: #0b5fff;
+  color: #fff;
+}
+
+/* Responsive sidebar */
+.sidebar {
+  width: 120px;
+  min-width: 80px;
+  padding: 1rem 0.5rem;
+}
+.sidebar ul {
+  padding: 0;
+  margin: 0;
+}
+.sidebar li {
+  font-size: 0.95rem;
+  padding: 0.5rem 0.5rem;
+  gap: 0.5rem;
+}
+
+/* Mobile styles */
+@media (max-width: 700px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    border-right: none;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 0.5rem 0;
+  }
+  .main-content {
+    padding: 0.5rem;
+  }
+  .trade-form .form-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .trade-form label {
+    min-width: unset;
+    width: 100%;
+  }
+  .positions {
+    min-width: 400px;
+    font-size: 0.95em;
+  }
+  .positions th, .positions td {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.95em;
+    min-width: 70px;
+  }
+}
+
+/* Make table scrollable on small screens */
+@media (max-width: 500px) {
+  .positions {
+    min-width: 350px;
+    font-size: 0.9em;
+  }
+  .positions th, .positions td {
+    min-width: 60px;
+    font-size: 0.9em;
+  }
+}
